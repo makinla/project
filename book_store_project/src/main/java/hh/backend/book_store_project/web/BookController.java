@@ -1,14 +1,24 @@
 package hh.backend.book_store_project.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import hh.backend.book_store_project.domain.BookRepository;
 
 @Controller
 public class BookController {
 
-    @GetMapping("/index")
-    public String showBookStore() {
-        return "index";
+    @Autowired
+    private BookRepository repository;
+
+    @GetMapping("/booklist")
+    public String showBookList(Model model) {
+        model.addAttribute("books", repository.findAll());
+        return "booklist";
     }
+
+
 
 }
