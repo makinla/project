@@ -42,7 +42,7 @@ public class BookController {
     @PostMapping("/edited")
     public String saveEditedBook(Book book){
         repository.save(book);
-        return "redirect:./booklist";
+        return "redirect:booklist";
     }
 
     @GetMapping("/delete/{id}")
