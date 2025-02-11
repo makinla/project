@@ -32,9 +32,9 @@ public class BookStoreProjectApplication {
 			Category category3 = new Category("Sci-fi");
 			crepository.save(category3);
 
-			brepository.save(new Book("Whispers of the Forest", "Oliver Winters", 2021, "978-945-8392-014", 18.99));
-			brepository.save(new Book("The Last Horizon", "Sophia Mitchell", 2022, "978-827-4783-601", 22.50));
-			brepository.save(new Book("Echoes of Tomorrow", "Lily Darkmoor", 2023, "978-952-5555-888", 25.00));
+			brepository.save(new Book("Whispers of the Forest", "Oliver Winters", 2021, "978-945-8392-014", 18.99, category1));
+			brepository.save(new Book("The Last Horizon", "Sophia Mitchell", 2022, "978-827-4783-601", 22.50, category2));
+			brepository.save(new Book("Echoes of Tomorrow", "Lily Darkmoor", 2023, "978-952-5555-888", 25.00, category3));
 
 			log.info("fetch all categories");
 			for (Category category : crepository.findAll()) {
