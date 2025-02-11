@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 
 import hh.backend.book_store_project.domain.Book;
 import hh.backend.book_store_project.domain.BookRepository;
+import hh.backend.book_store_project.domain.Category;
+import hh.backend.book_store_project.domain.CategoryRepository;
 
 @SpringBootApplication
 public class BookStoreProjectApplication {
@@ -20,19 +22,35 @@ public class BookStoreProjectApplication {
 	}
 
 	 @Bean
-	public CommandLineRunner demo(BookRepository repository) {
+	public CommandLineRunner demo(BookRepository brepository, CategoryRepository crepository) {
 		return (args) -> {
 			log.info("save a couple books");
-			repository.save(new Book("Tähdettömät taivaat", "Lily Darkmoor", 2023, "978-952-5555-888", 25.00));
-			repository.save(new Book("Aavikon varjo", "Cassius Storm", 2021, "978-952-4444-777", 19.90));
-			repository.save(new Book("Kylmä tuli", "Mira Faldor", 2020, "978-951-3333-555", 22.50));
+			Category category1 = new Category("Fantasy");
+			crepository.save(category1);
+			Category category2 = new Category("Adventure");
+			crepository.save(category2);
+			Category category3 = new Category("Sci-fi");
+			crepository.save(category3);
+
+			brepository.save(new Book("Whispers of the Forest", "Oliver Winters", 2021, "978-945-8392-014", 18.99));
+			brepository.save(new Book("The Last Horizon", "Sophia Mitchell", 2022, "978-827-4783-601", 22.50));
+			brepository.save(new Book("Echoes of Tomorrow", "Lily Darkmoor", 2023, "978-952-5555-888", 25.00));
+
+			log.info("fetch all categories");
+			for (Category category : crepository.findAll()) {
+				log.info(category.toString());
+				
+			}
+			System.out.println("");
 
 			log.info("fetch all books");
-			for (Book book : repository.findAll()) {
+			for (Book book : brepository.findAll()) {
 				log.info(book.toString());
 				
 			}
 		};
+
+	
 
 
 	} 
