@@ -1,5 +1,7 @@
 package hh.backend.book_store_project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class Book {
     private double price;
 
     @ManyToOne // kirja kuuluu max yhteen kategoriaan
+    @JsonIgnoreProperties ("books")
     @JoinColumn (name = "categoryId")
     private Category category;
     
