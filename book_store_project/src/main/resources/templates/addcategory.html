@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <title>Add category</title>
 </head>
 <body>
-    <h1>Add Category</h1>
-    <div>
+    
+    <div style="margin-left: 20px;">
+        <h1>Add Category</h1>
         <form th:object="${category}" th:action="@{savecategory}" action="#" method="post">
             <label for="name">Category</label>
             <input type="text" th:field="*{name}">
             <div style="clear: both; display: block; height: 10px;"></div>
-            <input type="submit" value="Save">
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <input type="submit" value="Save" class="btn btn-success">
         </form>
+        <br>
+        <form action="/booklist" method="get">
+            <button type="submit" class="btn btn-danger">Cancel</button>
+        </form>
+    </div>
     </div>
 </body>
 </html>
