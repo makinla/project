@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.backend.book_store_project.domain.Book;
@@ -28,6 +30,11 @@ public class BookRestController {
     @GetMapping("/booklistrest/{id}")
     public @ResponseBody Optional<Book> getBookByIdRest(@PathVariable (name = "id") long bookId) {
         return bookRepository.findById(bookId);
+    }
+
+    @PostMapping("/booklistrest") 
+    public @ResponseBody Book addNewBookRest(@RequestBody Book newBook) {
+        return bookRepository.save(newBook);
     }
 
 }

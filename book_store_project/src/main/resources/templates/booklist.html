@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -11,17 +11,12 @@
 <body>
 
     <div class="container" style="width: 75%; margin-top: 50px;">
-        <table>
-            <tr>
-                <h1>Books</h1>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </table>
+        <div class="col-md-4">
+            <h1>Books</h1>
+        </div>
+        <div class="col-md-4">
+            <h3><span sec:authentication="name"></span></h3>
+        </div>
         <table class="table table-striped">
             <tr>
                 <th>Author</th>
@@ -39,7 +34,7 @@
                 <td th:text="${book.publicationYear}"></td>
                 <td th:text="${book.category.name}"></td>
                 <td>
-                    <form th:action="@{/delete/{id}(id=${book.id})}" method="get">
+                    <form sec:authorize="hasAuthority('ADMIN')" th:action="@{/delete/{id}(id=${book.id})}" method="get">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
